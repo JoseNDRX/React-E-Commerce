@@ -15,7 +15,7 @@ const ProductDetail = () => {
     dispatch( setIsLoading( true ) )
     axios
       .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products/${id}`)
-      .then( (resp) => {setDetail( resp.data ), console.log(resp.data) } )
+      .then( (resp) => setDetail( resp.data ) )
       .catch( error => console.error( error ) )
       .finally( () => dispatch (setIsLoading( false ) ) )
   }, [])
@@ -27,8 +27,8 @@ const ProductDetail = () => {
       <Card.Body>
         <Card.Title>{ detail.title }</Card.Title>
         <Card.Text>${ detail.price }</Card.Text>
-        <Card.Text>{ detail.description }</Card.Text>
-        <Button variant="primary">Add to cart...</Button>
+        <Card.Text className="text-muted mb-5 d-inline-block">{ detail.description }</Card.Text>
+        <Button variant="primary"><i className='bx bx-cart-add'></i> Add to cart...</Button>
       </Card.Body>
     </Card>
       

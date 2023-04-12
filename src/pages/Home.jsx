@@ -81,7 +81,7 @@ const Home = () => {
                   <Card.Text>${ product.price }</Card.Text>
                   <Button
                   as={ Link } to={`/products/${product.id}`}
-                  variant="outline-dark">
+                  variant="primary">
                     Ver detalle...
                   </Button>
                 </Card.Body>
