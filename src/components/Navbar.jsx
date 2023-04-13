@@ -16,8 +16,8 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand as={Link} to ='/'>E-Commerce</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to ='/login'>LOGIN</Nav.Link>
-            <Nav.Link as={Link} to ='/purchases'>TUS COMPRAS</Nav.Link>
+            <Nav.Link as={Link} to ='/login'><i className='bx bx-user'></i> LOGIN</Nav.Link>
+            <Nav.Link as={Link} to ='/purchases'><i className='bx bx-shopping-bag'></i> PURCHASES</Nav.Link>
             <Nav.Link onClick={ () => setShow( true ) }><i className='bx bx-cart'></i> CARRITO</Nav.Link>
           </Nav>
         </Container>

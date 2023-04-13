@@ -44,7 +44,7 @@ const ProductDetail = () => {
         <Container>
           <Row className='mb-3'>
             <Col>
-              <Button onClick={ () => counter>= 1 ? setCounter( counter - 1) : setCounter(1) }>-</Button>
+              <Button onClick={ () => counter>= 2 ? setCounter( counter - 1) : setCounter(1) }>-</Button>
               { counter }
               <Button onClick={ () => setCounter( counter + 1)}>+</Button>
             </Col>

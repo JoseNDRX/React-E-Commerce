@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from '../store/slices/isLoading.slice';
-import { getCartThunk } from '../store/slices/cart.slice';
+import { getCartThunk, cartCheckoutThunk } from '../store/slices/cart.slice';
 import axios from 'axios';
 import getConfig from '../helpers/GetConfig';
 
@@ -27,7 +27,7 @@ const CartSidebar = ( { show, handleClose } ) => {
       .catch( error => console.error( error ) )
       .finally( () => dispatch (setIsLoading( false ) ) )
   }
-  const restQuantity = ( product ) => {
+  const decreaseQuantity = ( product ) => {
     const data = {
       "quantity": product.quantity - 1
     }
@@ -58,6 +58,7 @@ const CartSidebar = ( { show, handleClose } ) => {
     }
     return totalAmount
   }
+  
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end'>
       <Offcanvas.Header closeButton>
@@ -72,7 +73,7 @@ const CartSidebar = ( { show, handleClose } ) => {
               <h6>{ product.product?.title.slice(0, 35) } </h6>
 
               <div className='cartQtyControls'>
-                <Button disabled={product.quantity < 2} variant="success" onClick={() => restQuantity(product)}>-</Button>
+                <Button disabled={product.quantity < 2} variant="success" onClick={() => decreaseQuantity(product)}>-</Button>
                 <p>{product.quantity}</p>
                 <Button variant="success" onClick={() => addQuantity(product)}>+</Button>
               </div>
@@ -89,7 +90,7 @@ const CartSidebar = ( { show, handleClose } ) => {
           }
         </ul>
         <p>Total: ${getTotal().toFixed(2)}</p>
-        <button className='checkout' ><i className='bx bxs-credit-card'></i>CheckOut</button>
+        <button className='checkout' onClick={ () => dispatch( cartCheckoutThunk() ) }><i className='bx bxs-credit-card'></i>CheckOut</button>
       </Offcanvas.Body>
     </Offcanvas>
   );
