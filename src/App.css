@@ -72,3 +72,10 @@
     transform: translate(24px, 0);
   }
 }
+
+.purchase_card img{
+  max-width: 90px;
+  max-height: 90px;
+  display: block;
+  margin: 0 auto;
+}
