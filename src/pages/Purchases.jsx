@@ -17,7 +17,7 @@ const Purchases = () => {
             <br /><br /><br />
             <h1>Purchases</h1>
             {purchases.map(product => (
-                    <div className='purchase_card' 
+                    <div className='purchaseCard' 
                     key={product.createdAt}
                     onClick={() => navigate(`/products/${product.product.id}`)}
                     >
@@ -25,7 +25,8 @@ const Purchases = () => {
                         <p>{product?.product.title}</p>
                         <p>{product?.createdAt.slice(0, 10)}</p>
                         <p>{product?.quantity}</p>
-                        <p>{product?.product.price}</p>
+                        <p>${product?.product.price}</p>
+                        <p>Total: ${product?.product.price * product?.quantity }</p>
                     </div>
                 ))
             }
