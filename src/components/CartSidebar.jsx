@@ -69,7 +69,7 @@ const CartSidebar = ( { show, handleClose } ) => {
             cart.map( product => (
              <li key={ product.id }>
               <img style={{ width: 70}}src={ product.product?.images?.[0].url} alt="" />
-              <h6>{ product.product?.title.slice(0, 30) } </h6>
+              <h6>{ product.product?.title.slice(0, 35) } </h6>
 
               <div className='cartQtyControls'>
                 <Button disabled={product.quantity < 2} variant="success" onClick={() => restQuantity(product)}>-</Button>
@@ -88,7 +88,7 @@ const CartSidebar = ( { show, handleClose } ) => {
           
           }
         </ul>
-        <p>Total: {getTotal().toFixed(2)}</p>
+        <p>Total: ${getTotal().toFixed(2)}</p>
         <button className='checkout' ><i className='bx bxs-credit-card'></i>CheckOut</button>
       </Offcanvas.Body>
     </Offcanvas>
