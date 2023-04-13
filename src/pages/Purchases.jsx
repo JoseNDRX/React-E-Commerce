@@ -18,8 +18,8 @@ const Purchases = () => {
             <h1>Purchases</h1>
             {purchases.map(product => (
                     <div className='purchaseCard' 
-                    key={product.createdAt}
-                    onClick={() => navigate(`/products/${product.product.id}`)}
+                    key={ product.createdAt }
+                    onClick={ () => navigate(`/products/${product.product.id}`)}
                     >
                         <img src={product?.product.images[0].url} alt="" />
                         <p>{product?.product.title}</p>

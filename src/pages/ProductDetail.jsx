@@ -36,7 +36,7 @@ const ProductDetail = () => {
   return (
     <div>
       <Card >
-      <Card.Img variant="top" src={ detail.images?.[0].url} style={{height: 300, objectFit: 'cover'}}/>
+      <Card.Img variant="top" src={ detail.images?.[0].url} style={{height: 300, width: 'auto', objectFit: 'contain'}}/>
       <Card.Body>
         <Card.Title>{ detail.title }</Card.Title>
         <Card.Text>${ detail.price }</Card.Text>

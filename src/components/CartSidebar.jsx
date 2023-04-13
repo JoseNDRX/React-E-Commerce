@@ -65,7 +65,7 @@ const CartSidebar = ( { show, handleClose } ) => {
         <Offcanvas.Title>Products in Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <ul>
+        <ul style={{ listStyle: 'none'}}>
           {
             cart.map( product => (
              <li key={ product.id }>
