@@ -6,18 +6,28 @@ import { getCartThunk } from '../store/slices/cart.slice';
 
 const CartSidebar = ( { show, handleClose } ) => {
   const dispatch = useDispatch()
+  const cart = useSelector( state => state.cart )
 
   useEffect( () => {
     dispatch( getCartThunk() ) 
-  }, [])
+  }, []);
+
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end'>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>CART</Offcanvas.Title>
+        <Offcanvas.Title>Products in Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        Some text as placeholder. In real life you can have the elements you
-        have chosen. Like, text, images, lists, etc.
+        <ul>
+          {
+            cart.map( product => (
+             <li key={ product.id }>
+              Product
+             </li> 
+            ) )
+          
+          }
+        </ul>
       </Offcanvas.Body>
     </Offcanvas>
   );

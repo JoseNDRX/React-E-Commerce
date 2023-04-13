@@ -5,11 +5,16 @@ import { setIsLoading } from '../store/slices/isLoading.slice'
 import { useDispatch } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import { addProductThunk } from '../store/slices/cart.slice'
 
 const ProductDetail = () => {
   const { id } = useParams()
   const [ detail, setDetail ] = useState({})
   const dispatch = useDispatch()
+  const [ counter, setCounter ] = useState(1)
  
   useEffect( () => {
     dispatch( setIsLoading( true ) )
@@ -20,6 +25,14 @@ const ProductDetail = () => {
       .finally( () => dispatch (setIsLoading( false ) ) )
   }, [])
 
+  const addProduct = () => {
+    const data = {
+      "quantity" : counter,
+      "productId" : id
+    }
+    dispatch(addProductThunk(data))
+  }
+
   return (
     <div>
       <Card >
@@ -28,7 +41,20 @@ const ProductDetail = () => {
         <Card.Title>{ detail.title }</Card.Title>
         <Card.Text>${ detail.price }</Card.Text>
         <Card.Text className="text-muted mb-5 d-inline-block">{ detail.description }</Card.Text>
-        <Button variant="primary"><i className='bx bx-cart-add'></i> Add to cart...</Button>
+        <Container>
+          <Row className='mb-3'>
+            <Col>
+              <Button onClick={ () => counter>= 1 ? setCounter( counter - 1) : setCounter(1) }>-</Button>
+              { counter }
+              <Button onClick={ () => setCounter( counter + 1)}>+</Button>
+            </Col>
+            <Col>
+              <Button onClick={ addProduct } variant="primary">
+                <i className='bx bx-cart-add'></i> Add to cart...
+              </Button>
+            </Col>
+          </Row>
+        </Container>
       </Card.Body>
     </Card>
       
